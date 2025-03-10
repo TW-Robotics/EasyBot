@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<robot name="easyrobot">
+  <link name="fixedFrame"/>
+  <joint name="fixedFrameToWorld" type="fixed">
+    <parent link="fixedFrame"/>
+    <child link="base"/>
+    <origin rpy="0 0 0" xyz="0 0 0.5"/>
+  </joint>
+  <link name="base">
+    <visual>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </visual>
+  </link>
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </visual>
+  </link>
+  <link name="link2">
+    <visual>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </visual>
+  </link>
+    
+  <joint name="joint1" type="revolute">
+    <parent link="base"/>
+    <child link="link1"/>
+    <origin
+      xyz="0 0.05 0.45"
+      rpy="0 0 0" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.141"
+      upper="3.141"
+      effort="1000"
+      velocity="1000" />
+  </joint>
+  
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin
+      xyz="0 0.05 0.45"
+      rpy="0 0 0" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.141"
+      upper="3.141"
+      effort="1000"
+      velocity="1000" />
+  </joint>
+  
+  <link name="TCP"/>
+  <joint name="link2ToTCP" type="fixed">
+    <parent link="link2"/>
+    <child link="TCP"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0.425"/>
+  </joint>
+  
+  
+  
+</robot>
