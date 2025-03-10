@@ -17,4 +17,4 @@ source ~/ros2_ws/install/setup.bash
 ```
 ros2 launch easyrobot run.launch.py
 ```
-![easyrobot](Easyrobot/easyrobot/misc/easyrobot_rviz.png "easyrobot in rviz")
+![easyrobot](EasyRobot/easyrobot/misc/easyrobot_rviz.png "easyrobot in rviz")
