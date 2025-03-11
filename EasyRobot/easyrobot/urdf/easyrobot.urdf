@@ -65,7 +65,7 @@
   <joint name="link2ToTCP" type="fixed">
     <parent link="link2"/>
     <child link="TCP"/>
-    <origin rpy="0 0 1.57" xyz="0 0 0.425"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0.475"/>
   </joint>
   
   
