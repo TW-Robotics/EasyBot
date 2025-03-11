@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
 <robot name="easyrobot">
+  <!-- Virtual Fixed Frame Link -->
   <link name="fixedFrame"/>
+  <!-- Virtual Joint to fixate/move robot -->
   <joint name="fixedFrameToWorld" type="fixed">
     <parent link="fixedFrame"/>
     <child link="base"/>
     <origin rpy="0 0 0" xyz="0 0 0.5"/>
   </joint>
+  
+  <!--From here the easyrobot is defined-->
   <link name="base">
     <visual>
       <geometry>
@@ -13,7 +17,18 @@
       </geometry>
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1e-5" ixy="0.0" ixz="0.0" iyy="1e-5" iyz="0.0" izz="1e-5"/>
+    </inertial>
   </link>
+  
   <link name="link1">
     <visual>
       <geometry>
@@ -21,7 +36,18 @@
       </geometry>
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1e-5" ixy="0.0" ixz="0.0" iyy="1e-5" iyz="0.0" izz="1e-5"/>
+    </inertial>
   </link>
+  
   <link name="link2">
     <visual>
       <geometry>
@@ -29,6 +55,16 @@
       </geometry>
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1e-5" ixy="0.0" ixz="0.0" iyy="1e-5" iyz="0.0" izz="1e-5"/>
+    </inertial>
   </link>
     
   <joint name="joint1" type="revolute">
@@ -61,6 +97,7 @@
       velocity="1000" />
   </joint>
   
+  <!-- Virtual TCP Link and Joint to place it -->
   <link name="TCP"/>
   <joint name="link2ToTCP" type="fixed">
     <parent link="link2"/>
