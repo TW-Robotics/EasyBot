@@ -19,6 +19,12 @@ ros2 launch easyrobot run.launch.py
 ```
 ![easyrobot](EasyRobot/easyrobot/misc/easyrobot_rviz.png "easyrobot in rviz")
 
+## Gazebo
+```
+ros2 launch easyrobot gz.launch.py
+```
+Attention: Gazebo loads most possibly the wrong plugin and does not treat the joints correctly at this state.
+
 ## To-Do
 * DH-Convention for EasyRobot
 * MoveIt branch with Moveit Configuration
