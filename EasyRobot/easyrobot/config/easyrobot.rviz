@@ -79,10 +79,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        fixedFrame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         link1:
           Alpha: 1
           Show Axes: false
@@ -93,6 +89,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Mass Properties:
         Inertia: false
         Mass: false
@@ -132,7 +132,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: fixedFrame
+    Fixed Frame: world
     Frame Rate: 144
   Name: root
   Tools:
@@ -211,5 +211,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 2383
-  Y: 186
+  X: 714
+  Y: 123

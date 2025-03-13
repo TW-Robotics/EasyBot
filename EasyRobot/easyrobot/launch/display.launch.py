@@ -9,7 +9,7 @@ from ament_index_python.packages import get_package_share_directory
  
 def generate_launch_description():
     # Get the path to the URDF file
-    urdf_file_name = 'easyrobot.urdf'
+    urdf_file_name = 'gzbot.urdf'
     # Use LaunchConfiguration to allow override via command line
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     # Change this to your actual package name that contains the URDF
