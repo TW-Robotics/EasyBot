@@ -6,7 +6,7 @@
   <joint name="fixedFrameToWorld" type="fixed">
     <parent link="world"/>
     <child link="base"/>
-    <origin rpy="0 0 0" xyz="0 0 0.5"/>
+    <origin rpy="0 0 0" xyz="0 0 1"/>
   </joint>
   
   <!--From here the easyrobot is defined-->
@@ -24,7 +24,8 @@
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </collision>
     <inertial>
-      <mass value="1"/>
+      <mass value="10"/>
+       <origin xyz="0 0.025 0.225" rpy="0 0 0"/>
       <inertia ixx="1e-5" ixy="0.0" ixz="0.0" iyy="1e-5" iyz="0.0" izz="1e-5"/>
     </inertial>
   </link>
@@ -43,8 +44,9 @@
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </collision>
     <inertial>
-      <mass value="1"/>
-      <inertia ixx="1e-5" ixy="0.0" ixz="0.0" iyy="1e-5" iyz="0.0" izz="1e-5"/>
+      <mass value="5"/>
+      <origin xyz="0 0.025 0.225" rpy="0 0 0"/>
+      <inertia ixx="4e-5" ixy="0" ixz="0" iyy="10e-5" iyz="0" izz="6e-5"/>
     </inertial>
   </link>
   
@@ -62,8 +64,9 @@
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </collision>
     <inertial>
-      <mass value="1"/>
-      <inertia ixx="1e-5" ixy="0.0" ixz="0.0" iyy="1e-5" iyz="0.0" izz="1e-5"/>
+      <mass value="5"/>
+      <origin xyz="0 0.025 0.225" rpy="0 0 0"/>
+      <inertia ixx="2e-5" ixy="0" ixz="0" iyy="5e-5" iyz="0" izz="3e-5"/>
     </inertial>
   </link>
     
@@ -72,15 +75,15 @@
     <child link="link1"/>
     <origin
       xyz="0 0.05 0.45"
-      rpy="0 0 0" />
+      rpy="0 0.053 0" />
     <axis
       xyz="0 1 0" />
     <limit
-      lower="-3.141"
-      upper="3.141"
-      effort="0"
-      velocity="1" />
-    <dynamics damping="0.0" friction="0.0"/>
+      lower="-61.2831"
+      upper="61.2831"
+      effort="1000"
+      velocity="1000" />
+    <dynamics damping="0.0005" friction="0.16"/>
   </joint>
   
   <joint name="joint2" type="revolute">
@@ -88,15 +91,15 @@
     <child link="link2"/>
     <origin
       xyz="0 0.05 0.45"
-      rpy="0 0 0" />
+      rpy="0 0.056 0" />
     <axis
       xyz="0 1 0" />
     <limit
-      lower="-3.141"
-      upper="3.141"
-      effort="0"
-      velocity="1" />
-    <dynamics damping="0.0" friction="0.0"/>
+      lower="-61.2831"
+      upper="61.2831"
+      effort="1000"
+      velocity="1000" />
+    <dynamics damping="0.00056" friction="0.0015"/>
   </joint>
   
   <!-- Virtual TCP Link and Joint to place it -->
