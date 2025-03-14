@@ -83,7 +83,7 @@
       upper="61.2831"
       effort="1000"
       velocity="1000" />
-    <dynamics damping="0.1" friction="0.25"/>
+    <dynamics damping="0.0005" friction="0.16"/>
   </joint>
   
   <joint name="joint2" type="revolute">
@@ -99,7 +99,7 @@
       upper="61.2831"
       effort="1000"
       velocity="1000" />
-    <dynamics damping="0.1" friction="0.25"/>
+    <dynamics damping="0.00056" friction="0.0015"/>
   </joint>
   
   <!-- Virtual TCP Link and Joint to place it -->

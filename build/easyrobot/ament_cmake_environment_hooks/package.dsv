@@ -1,0 +1,4 @@
+source;share/easyrobot/local_setup.bash
+source;share/easyrobot/local_setup.dsv
+source;share/easyrobot/local_setup.sh
+source;share/easyrobot/local_setup.zsh
