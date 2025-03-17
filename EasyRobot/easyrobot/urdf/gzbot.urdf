@@ -79,8 +79,8 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="-61.2831"
-      upper="61.2831"
+      lower="-6.2831"
+      upper="6.2831"
       effort="1000"
       velocity="1000" />
     <dynamics damping="0.1" friction="0.25"/>
@@ -95,8 +95,8 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="-61.2831"
-      upper="61.2831"
+      lower="-6.2831"
+      upper="6.2831"
       effort="1000"
       velocity="1000" />
     <dynamics damping="0.1" friction="0.25"/>
@@ -111,10 +111,14 @@
   </joint>
   
   
-  <gazebo>
+  <!--gazebo>
     <plugin filename="ignition-gazebo-joint-state-publisher-system" name="ignition::gazebo::systems::JointStatePublisher"/>
-  </gazebo>
+  </gazebo> Possible old Plugin -> still working ? Why? -->
 
+  <!-- Joint State Publisher aktuelle Version -->
+  <gazebo>
+    <plugin filename = "gz-sim-joint-state-publisher-system" name = "gz::sim::systems::JointStatePublisher"/>
+  </gazebo>
   
   
 </robot>
