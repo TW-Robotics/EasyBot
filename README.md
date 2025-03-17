@@ -1,5 +1,5 @@
 # EasyBot
-This is the Repo of the Easybot (ROS Jazzy)
+This is the Repo of the Easybot (ROS Jazzy) with a Joint_Trajectory_Controller 
 ## Usage
 1. Do the git clone below (in ros2_ws/src):
 ```
@@ -23,10 +23,8 @@ ros2 launch easyrobot run.launch.py
 ```
 ros2 launch easyrobot gz.launch.py
 ```
-Attention: Gazebo loads most possibly the wrong plugin and does not treat the joints correctly at this state.
 
 ## To-Do
 * DH-Convention for EasyRobot
 * MoveIt branch with Moveit Configuration
 * Different Controllers
-* Gazebo Harmonic Integration
