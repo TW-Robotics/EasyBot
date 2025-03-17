@@ -29,5 +29,5 @@ ros2 launch easyrobot gz.launch.py
 ## To-Do
 * DH-Convention for EasyRobot
 * MoveIt branch with Moveit Configuration
-* Different Controllers
-* Gazebo Harmonic Integration
+* Different Controllers (ros2_control)
+* Gazebo Harmonic Integration (ros2_control)
