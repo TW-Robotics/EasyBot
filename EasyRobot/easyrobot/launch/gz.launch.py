@@ -29,12 +29,7 @@ def generate_launch_description():
     )
 
     # Gazebo Sim
-    gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(gz_package, 'launch', 'gz_sim.launch.py')
-        ),
-        launch_arguments={'gz_args': '-r empty.sdf'}.items(),
-    )
+    gazebo = IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(gz_package, 'launch', 'gz_sim.launch.py')),launch_arguments={'gz_args': '-r empty.sdf'}.items(),)
 
     # RViz
     rviz = Node(
