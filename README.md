@@ -23,7 +23,8 @@ ros2 launch easyrobot run.launch.py
 ```
 ros2 launch easyrobot gz.launch.py
 ```
-Attention: Gazebo loads most possibly the wrong plugin and does not treat the joints correctly at this state.
+## Issues
+~~Attention: Gazebo loads most possibly the wrong plugin and does not treat the joints correctly at this state.~~ (Solved for now)
 
 ## To-Do
 * DH-Convention for EasyRobot
