@@ -1,0 +1,27 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: easyrobot
+    relative_path: urdf/gzbot.urdf
+  srdf:
+    relative_path: config/easyrobot.srdf
+  package_settings:
+    author_name: Michael
+    author_email: michael.schebek@technikum-wien.at
+    generated_timestamp: 1742219386
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+      - effort
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+      - effort
