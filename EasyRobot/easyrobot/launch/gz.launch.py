@@ -6,6 +6,8 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
+from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
@@ -16,6 +18,13 @@ def generate_launch_description():
     robot_description_file = os.path.join(easybot_package, 'urdf', 'gzbot.urdf')
     robot_description_config = xacro.process_file(
         robot_description_file
+    )
+    robot_controllers = PathJoinSubstitution(
+        [
+            FindPackageShare('easyrobot'),
+            'config',
+            'easybot_controller.yaml',
+        ]
     )
     robot_description = {'robot_description': robot_description_config.toxml()}
 
@@ -46,6 +55,15 @@ def generate_launch_description():
                     'topic': 'robot_description'}],
         output='screen',
     )
+    joint_trajectory_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=[
+            'joint_trajectory_controller',
+            '--param-file',
+            robot_controllers,
+            ],
+    )
 
     # Gz - ROS Bridge
     bridge = Node(
@@ -64,5 +82,5 @@ def generate_launch_description():
     )
 
 
-    return LaunchDescription([robot_state_publisher,gazebo,rviz,spawn,bridge])
+    return LaunchDescription([robot_state_publisher,gazebo,rviz,spawn,bridge,joint_trajectory_controller_spawner])
 
