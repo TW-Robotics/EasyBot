@@ -6,7 +6,7 @@
   <joint name="fixedFrameToWorld" type="fixed">
     <parent link="world"/>
     <child link="base"/>
-    <origin rpy="0 0 0" xyz="0 0 1"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 1.0"/>
   </joint>
   
   <!--From here the easyrobot is defined-->
@@ -24,8 +24,8 @@
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </collision>
     <inertial>
-      <mass value="10"/>
-       <origin xyz="0 0.025 0.225" rpy="0 0 0"/>
+      <mass value="10.0"/>
+       <origin xyz="0.0 0.025 0.225" rpy="0.0 0.0 0.0"/>
       <inertia ixx="1e-5" ixy="0.0" ixz="0.0" iyy="1e-5" iyz="0.0" izz="1e-5"/>
     </inertial>
   </link>
@@ -44,8 +44,8 @@
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </collision>
     <inertial>
-      <mass value="5"/>
-      <origin xyz="0 0.025 0.225" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0.025 0.225" rpy="0.0 0.0 0.0"/>
       <inertia ixx="4e-5" ixy="0" ixz="0" iyy="10e-5" iyz="0" izz="6e-5"/>
     </inertial>
   </link>
@@ -64,8 +64,8 @@
       <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
     </collision>
     <inertial>
-      <mass value="5"/>
-      <origin xyz="0 0.025 0.225" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0.025 0.225" rpy="0.0 0.0 0.0"/>
       <inertia ixx="2e-5" ixy="0" ixz="0" iyy="5e-5" iyz="0" izz="3e-5"/>
     </inertial>
   </link>
@@ -74,15 +74,15 @@
     <parent link="base"/>
     <child link="link1"/>
     <origin
-      xyz="0 0.05 0.45"
-      rpy="0 0.053 0" />
+      xyz="0.0 0.05 0.45"
+      rpy="0.0 0.0 0.0" />
     <axis
       xyz="0 1 0" />
     <limit
       lower="-6.2831"
       upper="6.2831"
-      effort="1000"
-      velocity="1000" />
+      effort="100.0"
+      velocity="10.0" />
     <dynamics damping="0.1" friction="0.25"/>
   </joint>
   
@@ -90,15 +90,15 @@
     <parent link="link1"/>
     <child link="link2"/>
     <origin
-      xyz="0 0.05 0.45"
-      rpy="0 0.056 0" />
+      xyz="0.0 0.05 0.45"
+      rpy="0.0 0.0 0.0" />
     <axis
       xyz="0 1 0" />
     <limit
       lower="-6.2831"
       upper="6.2831"
-      effort="1000"
-      velocity="1000" />
+      effort="100.0"
+      velocity="10.0" />
     <dynamics damping="0.1" friction="0.25"/>
   </joint>
   
@@ -107,15 +107,17 @@
   <joint name="link2ToTCP" type="fixed">
     <parent link="link2"/>
     <child link="TCP"/>
-    <origin rpy="0 0 1.57" xyz="0 0 0.475"/>
+    <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.475"/>
   </joint>
   
   
   <!--gazebo>
     <plugin filename="ignition-gazebo-joint-state-publisher-system" name="ignition::gazebo::systems::JointStatePublisher"/>
   </gazebo> Possible old Plugin -> still working ? Why? -->
-
+  
+  
   <!-- Joint State Publisher aktuelle Version -->
+  
   <gazebo>
     <plugin filename = "gz-sim-joint-state-publisher-system" name = "gz::sim::systems::JointStatePublisher"/>
   </gazebo>
@@ -154,7 +156,8 @@
     <state_interface name="velocity"/>
     <state_interface name="effort"/>
   </joint>
-</ros2_control>
+  </ros2_control>
+
   
   
 </robot>

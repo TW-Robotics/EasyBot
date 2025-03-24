@@ -37,17 +37,17 @@ def generate_launch_description():
         parameters=[robot_description],
     )
 
-    # Gazebo Sim
+    # Gazebo Sim Launch
     gazebo = IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(gz_package, 'launch', 'gz_sim.launch.py')),launch_arguments={'gz_args': '-r empty.sdf'}.items(),)
 
-    # RViz
+    # Spawn RViz
     rviz = Node(
         package='rviz2',
         executable='rviz2',
         arguments=['-d', os.path.join(easybot_package, 'config', 'easyrobot.rviz')],
     )
 
-    # Spawn
+    # Spawn Robot in Gazebo
     spawn = Node(
         package='ros_gz_sim',
         executable='create',
@@ -55,6 +55,15 @@ def generate_launch_description():
                     'topic': 'robot_description'}],
         output='screen',
     )
+    
+    #Joint State Broadcaster
+    joint_state_broadcaster = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster'],
+    )
+    
+    #Controller Spawner mit Controller Manager
     joint_trajectory_controller_spawner = Node(
         package='controller_manager',
         executable='spawner',
@@ -82,5 +91,5 @@ def generate_launch_description():
     )
 
 
-    return LaunchDescription([robot_state_publisher,gazebo,rviz,spawn,bridge,joint_trajectory_controller_spawner])
+    return LaunchDescription([robot_state_publisher,gazebo,rviz,spawn,bridge,joint_trajectory_controller_spawner,joint_state_broadcaster])
 
