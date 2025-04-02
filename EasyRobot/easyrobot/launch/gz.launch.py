@@ -35,24 +35,26 @@ def generate_launch_description():
         name='robot_state_publisher',
         output='both',
         parameters=[robot_description],
+        #parameters=[robot_description,{'use_sim_time':True}],
     )
 
     # Gazebo Sim Launch
-    gazebo = IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(gz_package, 'launch', 'gz_sim.launch.py')),launch_arguments={'gz_args': '-r empty.sdf'}.items(),)
+    gazebo = IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(gz_package, 'launch', 'gz_sim.launch.py')),launch_arguments={'gz_args': '-r empty.sdf','use_sim_time':'True'}.items(),)
 
-    # Spawn RViz
-    rviz = Node(
-        package='rviz2',
-        executable='rviz2',
-        arguments=['-d', os.path.join(easybot_package, 'config', 'easyrobot.rviz')],
-    )
+    # Not Spawn RViz --> RViz is spawned by Moveit with all configs
+    #rviz = Node(
+    #    package='rviz2',
+    #    executable='rviz2',
+    #    arguments=['-d', os.path.join(easybot_package, 'config', 'easyrobot.rviz')],
+    #)
 
     # Spawn Robot in Gazebo
     spawn = Node(
         package='ros_gz_sim',
         executable='create',
         parameters=[{'name': 'easyrobot',
-                    'topic': 'robot_description'}],
+                    'topic': 'robot_description',
+                    'use_sim_time':True}],
         output='screen',
     )
     
@@ -61,6 +63,7 @@ def generate_launch_description():
         package='controller_manager',
         executable='spawner',
         arguments=['joint_state_broadcaster'],
+        parameters=[{'use_sim_time':True}] 
     )
     
     #Controller Spawner mit Controller Manager
@@ -72,6 +75,7 @@ def generate_launch_description():
             '--param-file',
             robot_controllers,
             ],
+        parameters=[{'use_sim_time':True}]
     )
 
     # Gz - ROS Bridge
@@ -87,9 +91,10 @@ def generate_launch_description():
         remappings=[
             ('/world/empty/model/easyrobot/joint_state', 'joint_states'),
         ],
+        parameters=[{'use_sim_time':True}],
         output='screen'
     )
 
 
-    return LaunchDescription([robot_state_publisher,gazebo,rviz,spawn,bridge,joint_trajectory_controller_spawner,joint_state_broadcaster])
+    return LaunchDescription([robot_state_publisher,gazebo,spawn,bridge,joint_trajectory_controller_spawner,joint_state_broadcaster])
 
