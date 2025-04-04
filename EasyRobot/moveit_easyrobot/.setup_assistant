@@ -5,9 +5,9 @@ moveit_setup_assistant_config:
   srdf:
     relative_path: config/easyrobot.srdf
   package_settings:
-    author_name: Michael
+    author_name: Michael Schebek
     author_email: michael.schebek@technikum-wien.at
-    generated_timestamp: 1742219386
+    generated_timestamp: 1743601874
   control_xacro:
     command:
       - position

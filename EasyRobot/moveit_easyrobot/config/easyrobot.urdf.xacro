@@ -5,10 +5,10 @@
     <!-- Import easyrobot urdf file -->
     <xacro:include filename="$(find easyrobot)/urdf/gzbot.urdf" />
 
-    <!-- Import control_xacro -->
+    <!-- Import control_xacro 
     <xacro:include filename="easyrobot.ros2_control.xacro" />
 
 
-    <xacro:easyrobot_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    <xacro:easyrobot_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>-->
 
 </robot>

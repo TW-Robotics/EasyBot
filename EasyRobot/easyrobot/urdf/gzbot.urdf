@@ -81,7 +81,7 @@
     <limit
       lower="-6.2831"
       upper="6.2831"
-      effort="100.0"
+      effort="200.0"
       velocity="10.0" />
     <dynamics damping="0.1" friction="0.25"/>
   </joint>
@@ -143,7 +143,6 @@
       <param name="initial_value">0.0</param>
     </state_interface>
     <state_interface name="velocity"/>
-    <state_interface name="effort"/>
   </joint>
     <joint name="joint2">
     <command_interface name="position">
@@ -154,7 +153,6 @@
       <param name="initial_value">0.0</param>
     </state_interface>
     <state_interface name="velocity"/>
-    <state_interface name="effort"/>
   </joint>
   </ros2_control>
 

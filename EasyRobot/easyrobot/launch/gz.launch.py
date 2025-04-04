@@ -26,6 +26,13 @@ def generate_launch_description():
             'easybot_controller.yaml',
         ]
     )
+    robot_controller_moveit = PathJoinSubstitution(
+        [
+            FindPackageShare('moveit_easyrobot'),
+            'config',
+            'moveit_controllers.yaml',
+        ]
+    )
     robot_description = {'robot_description': robot_description_config.toxml()}
 
     # Robot state publisher
@@ -77,6 +84,17 @@ def generate_launch_description():
             ],
         parameters=[{'use_sim_time':True}]
     )
+    
+    #moveit_controller_spawner = Node(
+    #    package='controller_manager',
+    #    executable='spawner',
+    #    arguments=[
+    #        'moveit_arm_controller',
+    #        '--param-file',
+    #        robot_controller_moveit
+    #        ],
+    #    parameters=[{'use_sim_time':True}]
+    #)
 
     # Gz - ROS Bridge
     bridge = Node(
@@ -96,5 +114,5 @@ def generate_launch_description():
     )
 
 
-    return LaunchDescription([robot_state_publisher,gazebo,spawn,bridge,joint_trajectory_controller_spawner,joint_state_broadcaster])
+    return LaunchDescription([robot_state_publisher,gazebo,spawn,bridge,joint_state_broadcaster,joint_trajectory_controller_spawner])
 
