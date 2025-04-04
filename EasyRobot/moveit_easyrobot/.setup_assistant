@@ -7,7 +7,7 @@ moveit_setup_assistant_config:
   package_settings:
     author_name: Michael Schebek
     author_email: michael.schebek@technikum-wien.at
-    generated_timestamp: 1743601874
+    generated_timestamp: 1743757789
   control_xacro:
     command:
       - position

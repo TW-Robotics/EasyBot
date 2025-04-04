@@ -9,21 +9,28 @@
     <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
-    <group name="arm">
+    <group name="easybot_arm">
+        <link name="base"/>
+        <link name="link1"/>
+        <link name="link2"/>
+        <link name="TCP"/>
+        <joint name="joint1"/>
+        <joint name="joint2"/>
+        <joint name="link2ToTCP"/>
         <chain base_link="base" tip_link="TCP"/>
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="home" group="arm">
+    <group_state name="home" group="easybot_arm">
         <joint name="joint1" value="0"/>
         <joint name="joint2" value="0"/>
     </group_state>
-    <group_state name="pose1" group="arm">
-        <joint name="joint1" value="1.58"/>
-        <joint name="joint2" value="-1.58"/>
+    <group_state name="pose1" group="easybot_arm">
+        <joint name="joint1" value="1.57"/>
+        <joint name="joint2" value="-1.57"/>
     </group_state>
-    <group_state name="pose2" group="arm">
-        <joint name="joint1" value="-1.58"/>
-        <joint name="joint2" value="1.58"/>
+    <group_state name="pose2" group="easybot_arm">
+        <joint name="joint1" value="-1.57"/>
+        <joint name="joint2" value="1.57"/>
     </group_state>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base" link2="link1" reason="Adjacent"/>

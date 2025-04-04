@@ -20,5 +20,4 @@ arm_controller:
     state_interfaces:
       - position
       - velocity
-      - effort
     allow_nonzero_velocity_at_trajectory_end: true
