@@ -35,7 +35,7 @@ def generate_launch_description():
         "robot_description_semantic": robot_description_semantic_config
     }
 
-    # kinematics yaml
+    # Kinematics
     kinematics_yaml_path = os.path.join(
         get_package_share_directory("moveit_easyrobot"),
         "config",
@@ -46,7 +46,7 @@ def generate_launch_description():
 
     robot_description_kinematics = {"robot_description_kinematics": kinematics_yaml}
 
-    # joint_limits yaml
+    # joint_limits
     joint_limits_yaml_path = os.path.join(
         get_package_share_directory("moveit_easyrobot"),
         "config",
@@ -56,7 +56,7 @@ def generate_launch_description():
         joint_limits_yaml = yaml.safe_load(file)
     robot_description_joint_limits = {"robot_description_planning": joint_limits_yaml}
 
-    # Planning Functionality
+    # OMPL
     ompl_planning_pipeline_config = {
         "move_group": {
             "planning_plugins": ["ompl_interface/OMPLPlanner"],
@@ -92,7 +92,7 @@ def generate_launch_description():
         "trajectory_execution.allowed_start_tolerance": 0.01,
     }
 
-    # Moveit Controllers
+    # Moveit Controllers config file
     moveit_simple_controllers_yaml_path = os.path.join(
         get_package_share_directory("moveit_easyrobot"),
         "config",
@@ -125,7 +125,7 @@ def generate_launch_description():
         description='Start robot in Gazebo simulation.')
     ld.add_action(declare_use_sim)
 
-    move_group_node = Node(
+    move_group = Node(
         package="moveit_ros_move_group",
         executable="move_group",
         output="screen",
@@ -142,6 +142,6 @@ def generate_launch_description():
         ],
     )
 
-    ld.add_action(move_group_node)
+    ld.add_action(move_group)
 
     return ld

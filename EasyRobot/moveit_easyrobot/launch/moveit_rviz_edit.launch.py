@@ -16,7 +16,7 @@ def generate_launch_description():
         "moveit.rviz"
     )
 
-    # Robot description (URDF)
+    # Robot description
     robot_description_config = xacro.process_file(
         os.path.join(
             get_package_share_directory("easyrobot"),
@@ -26,7 +26,7 @@ def generate_launch_description():
     )
     robot_description = {"robot_description": robot_description_config.toxml()}
 
-    # Robot description Semantic (SRDF)
+    # SRDF
     robot_description_semantic_path = os.path.join(
         get_package_share_directory("moveit_easyrobot"),
         "config",
@@ -37,7 +37,7 @@ def generate_launch_description():
 
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
 
-    # Planning Functionality (OMPL)
+    # OMPL 
     ompl_planning_pipeline_config = {
         "move_group": {
             "planning_plugins": ["ompl_interface/OMPLPlanner"],
@@ -64,7 +64,7 @@ def generate_launch_description():
         ompl_planning_yaml = yaml.safe_load(file)
     ompl_planning_pipeline_config["move_group"].update(ompl_planning_yaml)
 
-    # Kinematics yaml
+    # Kinematics
     kinematics_yaml_path = os.path.join(
         get_package_share_directory("moveit_easyrobot"),
         "config",
@@ -75,7 +75,7 @@ def generate_launch_description():
 
     robot_description_kinematics = {"robot_description_kinematics": kinematics_yaml}
 
-    # Joint Limits yaml
+    # Joint Limits
     joint_limits_yaml_path = os.path.join(
         get_package_share_directory("moveit_easyrobot"),
         "config",
@@ -85,11 +85,9 @@ def generate_launch_description():
         joint_limits_yaml = yaml.safe_load(file)
     robot_description_joint_limits = {"robot_description_planning": joint_limits_yaml}
 
-
-
     ld = LaunchDescription()
 
-    rviz_node = Node(
+    rviz = Node(
         package="rviz2",
         executable="rviz2",
         name="rviz2",
@@ -104,6 +102,6 @@ def generate_launch_description():
         ]
     )
 
-    ld.add_action(rviz_node)
+    ld.add_action(rviz)
 
     return ld

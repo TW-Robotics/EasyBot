@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
+
 <robot name="easyrobot">
-  <!-- Virtual Fixed Frame Link - must name world ! -->
+
+  <!-- Virtual Fixed Frame Link - must name world(!) for Gazebo to work -->
   <link name="world"/>
+  
   <!-- Virtual Joint to fixate/move robot -->
   <joint name="fixedFrameToWorld" type="fixed">
     <parent link="world"/>
@@ -9,7 +12,8 @@
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 1.0"/>
   </joint>
   
-  <!--From here the easyrobot is defined-->
+  <!--From here the EasyBot is defined-->
+  
   <link name="base">
     <visual>
       <geometry>
@@ -110,26 +114,19 @@
     <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.475"/>
   </joint>
   
-  
-  <!--gazebo>
-    <plugin filename="ignition-gazebo-joint-state-publisher-system" name="ignition::gazebo::systems::JointStatePublisher"/>
-  </gazebo> Possible old Plugin -> still working ? Why? -->
-  
-  
-  <!-- Joint State Publisher aktuelle Version -->
-  
+  <!-- Joint State Publisher Gazebo -->
   <gazebo>
     <plugin filename = "gz-sim-joint-state-publisher-system" name = "gz::sim::systems::JointStatePublisher"/>
   </gazebo>
   
-  
+  <!-- ROS2 control plugin Gazebo -->
   <gazebo>
     <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
       <parameters>$(find easyrobot)/config/easybot_controller.yaml</parameters>
     </plugin>
   </gazebo>
   
-  
+  <!-- Hardware Interfaces for ROS2 control in Gazebo -->
   <ros2_control name="GazeboSimSystem" type="system">
   <hardware>
     <plugin>gz_ros2_control/GazeboSimSystem</plugin>
@@ -156,6 +153,4 @@
   </joint>
   </ros2_control>
 
-  
-  
 </robot>

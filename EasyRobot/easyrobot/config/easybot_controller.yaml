@@ -8,7 +8,8 @@ controller_manager:
       
     easyrobot_controller:
       type: joint_trajectory_controller/JointTrajectoryController
-
+      
+#Controller for the easybot must have the same name as in the moveit_controllers.yaml file
 easyrobot_controller:
   ros__parameters:
     type: "joint_trajectory_controller/JointTrajectoryController"

@@ -45,7 +45,7 @@ def generate_launch_description():
         #parameters=[robot_description,{'use_sim_time':True}],
     )
 
-    # Gazebo Sim Launch
+    # Gazebo Harmonic Launch
     gazebo = IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(gz_package, 'launch', 'gz_sim.launch.py')),launch_arguments={'gz_args': '-r empty.sdf','use_sim_time':'True'}.items(),)
 
     # Not Spawn RViz --> RViz is spawned by Moveit with all configs
@@ -73,7 +73,7 @@ def generate_launch_description():
         parameters=[{'use_sim_time':True}] 
     )
     
-    #Controller Spawner mit Controller Manager
+    #Controller Spawner with Controller Manager
     controller = Node(
         package='controller_manager',
         executable='spawner',
@@ -85,18 +85,7 @@ def generate_launch_description():
         parameters=[{'use_sim_time':True}]
     )
     
-    #moveit_controller_spawner = Node(
-    #    package='controller_manager',
-    #    executable='spawner',
-    #    arguments=[
-    #        'moveit_arm_controller',
-    #        '--param-file',
-    #        robot_controller_moveit
-    #        ],
-    #    parameters=[{'use_sim_time':True}]
-    #)
-
-    # Gz - ROS Bridge
+    # Gazebo Harmonic - ROS2 Bridge
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',

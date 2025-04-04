@@ -1,11 +1,7 @@
-# MoveIt uses this configuration for controller management
-
-#moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
-
-#moveit_simple_controller_manager:
   controller_names:
     - easyrobot_controller
-
+    
+  #Controller for the easybot must have the same name as in the easybot_controller.yaml file
   easyrobot_controller:
     type: FollowJointTrajectory
     action_ns: follow_joint_trajectory
