@@ -74,7 +74,7 @@ def generate_launch_description():
     )
     
     #Controller Spawner mit Controller Manager
-    joint_trajectory_controller_spawner = Node(
+    controller = Node(
         package='controller_manager',
         executable='spawner',
         arguments=[
@@ -114,5 +114,5 @@ def generate_launch_description():
     )
 
 
-    return LaunchDescription([robot_state_publisher,gazebo,spawn,bridge,joint_state_broadcaster,joint_trajectory_controller_spawner])
+    return LaunchDescription([robot_state_publisher,gazebo,spawn,bridge,joint_state_broadcaster,controller])
 

@@ -11,7 +11,7 @@ def generate_launch_description():
     # Get the path to the URDF file
     urdf_file_name = 'gzbot.urdf'
     # Use LaunchConfiguration to allow override via command line
-    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+    use_sim_time = LaunchConfiguration('use_sim_time', default='true')
     # Change this to your actual package name that contains the URDF
     package_name = 'easyrobot'
 

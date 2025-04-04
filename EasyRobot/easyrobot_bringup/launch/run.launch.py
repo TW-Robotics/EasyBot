@@ -6,10 +6,8 @@ from launch.substitutions import PathJoinSubstitution, TextSubstitution
 #from launch.actions import 
 #from launch_ros.actions import Node
 
-
-def generate_launch_description():
-    
-#    move_group = #IncludeLaunchDescription(PythonLaunchDescriptionSource([PathJoinSubstitution([FindPackageShare('moveit_easyrobot'),'launch','move_group.launch.py'])]),launch_arguments=[("use_si##m_time", "True")])
+###Testing###
+#move_group = #IncludeLaunchDescription(PythonLaunchDescriptionSource([PathJoinSubstitution([FindPackageShare('moveit_easyrobot'),'launch','move_group.launch.py'])]),launch_arguments=[("use_si##m_time", "True")])
 #    #move_group = IncludeLaunchDescription(PythonLaunchDescriptionSource([PathJoinSubstitution([FindPackageShare('moveit_easyrobot'),'launch','move_group.launch.py'])]), ##launch_arguments={'use_sim_time': 'true'}.items())
 #    
 #    #set_sim_time = SetParameters([("/move_group", {"use_sim_time": True})])
@@ -18,26 +16,15 @@ def generate_launch_description():
 #        'use_sim_time', 
 #        default_value='true', 
 #        description='Parameter for Sim Time'
-#    )
-    move_group = IncludeLaunchDescription(PythonLaunchDescriptionSource([PathJoinSubstitution([FindPackageShare('moveit_easyrobot'), 'launch','move_group_edit.launch.py'])]))
-    
+#    ) Testing
 
 
+###Launch file starts here###
+
+def generate_launch_description():
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    launch_rviz = IncludeLaunchDescription(PythonLaunchDescriptionSource([PathJoinSubstitution([FindPackageShare('moveit_easyrobot'),'launch','moveit_rviz.launch.py'])]))
+    move_group = IncludeLaunchDescription(PythonLaunchDescriptionSource([PathJoinSubstitution([FindPackageShare('moveit_easyrobot'), 'launch','move_group_edit.launch.py'])]))    
+    launch_rviz = IncludeLaunchDescription(PythonLaunchDescriptionSource([PathJoinSubstitution([FindPackageShare('moveit_easyrobot'),'launch','moveit_rviz_edit.launch.py'])]))
     robot = IncludeLaunchDescription(PythonLaunchDescriptionSource([PathJoinSubstitution([FindPackageShare('easyrobot'),'launch','gz.launch.py'])]))
-    
-    
     
     return LaunchDescription([robot,launch_rviz,move_group])
