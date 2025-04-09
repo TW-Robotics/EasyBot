@@ -14,7 +14,7 @@ def generate_launch_description():
     easybot_package = get_package_share_directory('easyrobot')
     gz_package = get_package_share_directory('ros_gz_sim')
 
-    robot_description_file = os.path.join(easybot_package, 'urdf', 'gzbot.urdf')
+    robot_description_file = os.path.join(easybot_package, 'urdf', 'easybot_effort.urdf')
     robot_description_config = xacro.process_file(
         robot_description_file
     )
@@ -22,7 +22,7 @@ def generate_launch_description():
         [
             FindPackageShare('easyrobot'),
             'config',
-            'easybot_controller.yaml',
+            'easybot_controller_effort.yaml',
         ]
     )
 
