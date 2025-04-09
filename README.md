@@ -14,19 +14,29 @@ colcon build
 source ~/ros2_ws/install/setup.bash
 ```
 
-![easyrobot](EasyRobot/easyrobot/misc/easyrobot_rviz.png "easyrobot in rviz")
+![easyrobot](EasyRobot/easyrobot/misc/easyrobot_rviz.png "Easybot in RViz")
 
-## Launching the EasyBot in Gazebo with MoveIt Control
+## Launching the EasyBot in Gazebo with MoveIt Control (joint_trajectory_controller with position command_interface)
 ```
 ros2 launch easyrobot_bringup run.launch.py
 ```
-This launches a Gazebo Empty World with the EasyBot spawned 0.5 meters clear of the ground plane
+This launches a Gazebo Empty World with the EasyBot spawned 1.0 meters clear of the ground plane
+
+## Launching the EasyBot in Gazebo with MoveIt Control (joint_trajectory_controller with effort command_interface)
+```
+ros2 launch easyrobot_bringup run_effort.launch.py
+```
+This launches a Gazebo Empty World with the EasyBot spawned 1.0 meters clear of the ground plane.
+
+**Attention: PID Controller is very poorly optimized, Easybot will struggle to reach most positions with the set goal tolerances! (WIP)**
 
 ## Issues
 * Default Planner has to be choosen in RViz (Context --> OMPL --> Planner Dropdown --> choose RRTConnect)
+* Effort Controller poorly optimized 
 
 ## To-Do
 * DH-Convention for EasyRobot
 * ~~MoveIt branch with Moveit Configuration~~
-* Different Controllers (velocity and effort planned)
+* ~~Different Controllers (velocity and effort planned)~~ Added effort controller
+* Optimize PID for Effort controller
 * Adding different OMPL Planners for testing
