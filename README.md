@@ -15,6 +15,7 @@ source ~/ros2_ws/install/setup.bash
 ```
 
 ![easyrobot](EasyRobot/easyrobot/misc/easyrobot_rviz.png "Easybot in RViz")
+![easyrobot2](EasyRobot/easyrobot/misc/easybot_gz.png "Easybot in Gazebo Harmonic")
 
 ## Launching the EasyBot in Gazebo with MoveIt Control (joint_trajectory_controller with position command_interface)
 ```
