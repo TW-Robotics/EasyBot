@@ -7,6 +7,8 @@ import yaml
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
 
 def generate_launch_description():
     
@@ -53,6 +55,7 @@ def generate_launch_description():
                 "default_planning_response_adapters/DisplayMotionPath",
             ],
             "start_state_max_bounds_error": 0.1,
+            
         }
     }
     ompl_planning_yaml_path = os.path.join(
@@ -86,6 +89,12 @@ def generate_launch_description():
     robot_description_joint_limits = {"robot_description_planning": joint_limits_yaml}
 
     ld = LaunchDescription()
+    use_sim = LaunchConfiguration('use_sim')
+    declare_use_sim = DeclareLaunchArgument(
+        'use_sim',
+        default_value='true',
+        description='Start robot in Gazebo simulation.')
+    ld.add_action(declare_use_sim)
 
     rviz = Node(
         package="rviz2",
@@ -99,6 +108,7 @@ def generate_launch_description():
             ompl_planning_pipeline_config,
             robot_description_kinematics,
             robot_description_joint_limits,
+            {'use_sim_time': use_sim},
         ]
     )
 
