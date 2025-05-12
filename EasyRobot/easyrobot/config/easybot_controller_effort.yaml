@@ -23,10 +23,10 @@ easyrobot_controller:
       - velocity
     gains:
       joint1:
-        p: 500.0
-        i: 10.0
+        p: 1000.0
+        i: 20.0
         d: 100.0
-        i_clamp: 20.0
+        i_clamp: 30.0
         antiwindup: true
       joint2:
         p: 150.0
@@ -35,3 +35,12 @@ easyrobot_controller:
         i_clamp: 10.0
         antiwindup: true
     allow_nonzero_velocity_at_trajectory_end: true
+    constraints:
+      goal_time: 1.0
+      stopped_velocity_tolerance: 0.1
+      joint1:
+        goal: 0.1
+        #trajectory: 0.1 ##With high speeds the controller is not able to follow the preplaned path. WIP!
+      joint2:
+        goal: 0.1
+        #trajectory: 0.1 ##With high speeds the controller is not able to follow the preplaned path. WIP!
