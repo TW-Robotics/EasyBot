@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+
+<robot name="easybot">
+
+  <!-- Virtual Fixed Frame Link - must name world(!) for Gazebo to work -->
+  <link name="world"/>
+  
+  <!-- Virtual Joint to fixate/move robot -->
+  <joint name="fixedFrameToWorld" type="fixed">
+    <parent link="world"/>
+    <child link="base"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 1.0"/>
+  </joint>
+  
+  <!--From here the EasyBot is defined-->
+  
+  <link name="base">
+    <visual>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </collision>
+    <inertial>
+      <mass value="10.0"/>
+       <origin xyz="0.0 0.025 0.225" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="1e-5" ixy="0.0" ixz="0.0" iyy="1e-5" iyz="0.0" izz="1e-5"/>
+    </inertial>
+  </link>
+  
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0.025 0.225" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="4e-5" ixy="0" ixz="0" iyy="10e-5" iyz="0" izz="6e-5"/>
+    </inertial>
+  </link>
+  
+  <link name="link2">
+    <visual>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.05 0.1"/>
+      </geometry>
+      <origin rpy="0 1.57 0" xyz="0 0 0.225"/>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0.025 0.225" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="2e-5" ixy="0" ixz="0" iyy="5e-5" iyz="0" izz="3e-5"/>
+    </inertial>
+  </link>
+    
+  <joint name="joint1" type="revolute">
+    <parent link="base"/>
+    <child link="link1"/>
+    <origin
+      xyz="0.0 0.05 0.45"
+      rpy="0.0 0.0 0.0" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-6.2831"
+      upper="6.2831"
+      effort="200.0"
+      velocity="10.0" />
+    <dynamics damping="0.1" friction="0.25"/>
+  </joint>
+  
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin
+      xyz="0.0 0.05 0.45"
+      rpy="0.0 0.0 0.0" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-6.2831"
+      upper="6.2831"
+      effort="100.0"
+      velocity="10.0" />
+    <dynamics damping="0.1" friction="0.25"/>
+  </joint>
+  
+  <!-- Virtual TCP Link and Joint to place it -->
+  <link name="TCP"/>
+  <joint name="link2ToTCP" type="fixed">
+    <parent link="link2"/>
+    <child link="TCP"/>
+    <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.475"/>
+  </joint>
+  
+  <!-- Joint State Publisher Gazebo -->
+  <gazebo>
+    <plugin filename = "gz-sim-joint-state-publisher-system" name = "gz::sim::systems::JointStatePublisher"/>
+  </gazebo>
+  
+  <!-- ROS2 control plugin Gazebo -->
+  <gazebo>
+    <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>$(find easybot_description)/config/easybot_controller_position.yaml</parameters>
+    </plugin>
+  </gazebo>
+  
+  <!-- Hardware Interfaces for ROS2 control in Gazebo -->
+  <ros2_control name="GazeboSimSystem" type="system">
+  <hardware>
+    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+  </hardware>
+  <joint name="joint1">
+    <command_interface name="position">
+      <param name="min">-6.28</param>
+      <param name="max">6.28</param>
+    </command_interface>
+    <state_interface name="position">
+      <param name="initial_value">0.0</param>
+    </state_interface>
+    <state_interface name="velocity"/>
+  </joint>
+    <joint name="joint2">
+    <command_interface name="position">
+      <param name="min">-6.28</param>
+      <param name="max">6.28</param>
+    </command_interface>
+    <state_interface name="position">
+      <param name="initial_value">0.0</param>
+    </state_interface>
+    <state_interface name="velocity"/>
+  </joint>
+  </ros2_control>
+
+</robot>
