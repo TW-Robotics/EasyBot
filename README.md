@@ -5,11 +5,15 @@ This is the Repo of the Easybot (ROS Jazzy) with a MoveIt2 Config and Gazebo Har
 ```
 git clone https://github.com/TW-Robotics/EasyBot.git
 ```
-2. Build your Workspace with (in ros2_ws): 
+2. Install all needed packages and dependancies (assuming ros-jazzy-desktop installation) with:
+```
+sudo apt install ros-jazzy-ros-gz ros-jazzy-gz-ros2-control ros-jazzy-ros2-control ros-jazzy-ros2-controllers ros-jazzy-moveit ros-jazzy-joint-state-publisher*
+```
+3. Build your Workspace with (in ros2_ws): 
 ```
 colcon build
 ```
-3. Source you Install directory with (assuming ros2_ws is in your home and you are using bash):
+4. Source you Install directory with (assuming ros2_ws is in your home and you are using bash):
 ```
 source ~/ros2_ws/install/setup.bash
 ```
